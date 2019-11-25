@@ -1,0 +1,45 @@
+{
+  "ruleChain": {
+    "additionalInfo": {
+      "description": "Rules for customer Gumpen Gruppen"
+    },
+    "name": "brg_root",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null
+  },
+  "metadata": {
+    "firstNodeIndex": 0,
+    "nodes": [
+      {
+        "additionalInfo": {
+          "layoutX": 369,
+          "layoutY": 152
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbMsgTypeSwitchNode",
+        "name": "Message Type check",
+        "debugMode": false,
+        "configuration": {
+          "version": 0
+        }
+      }
+    ],
+    "connections": null,
+    "ruleChainConnections": [
+      {
+        "fromIndex": 0,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "aa93b480-0c5d-11ea-822b-294ca0e2791a"
+        },
+        "additionalInfo": {
+          "layoutX": 884,
+          "layoutY": 115,
+          "ruleChainNodeId": "rule-chain-node-3"
+        },
+        "type": "Post telemetry"
+      }
+    ]
+  }
+}
