@@ -3,7 +3,7 @@
     "additionalInfo": {
       "description": "Create/Clear Alarm & send Email"
     },
-    "name": "gumpen_alarm_handler",
+    "name": "jarl_alarm_handler",
     "firstRuleNodeId": null,
     "root": false,
     "debugMode": false,
@@ -227,7 +227,7 @@
       {
         "fromIndex": 9,
         "toIndex": 5,
-        "type": "True"
+        "type": "False"
       }
     ],
     "ruleChainConnections": null

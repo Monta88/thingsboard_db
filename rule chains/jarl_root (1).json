@@ -31,6 +31,19 @@
         "fromIndex": 0,
         "targetRuleChainId": {
           "entityType": "RULE_CHAIN",
+          "id": "668a39d0-1059-11ea-822b-294ca0e2791a"
+        },
+        "additionalInfo": {
+          "layoutX": 860,
+          "layoutY": 486,
+          "ruleChainNodeId": "rule-chain-node-6"
+        },
+        "type": "Post attributes"
+      },
+      {
+        "fromIndex": 0,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
           "id": "66779830-06c1-11ea-822b-294ca0e2791a"
         },
         "additionalInfo": {
@@ -52,6 +65,19 @@
           "ruleChainNodeId": "rule-chain-node-4"
         },
         "type": "Post telemetry"
+      },
+      {
+        "fromIndex": 0,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "e1eedae0-1040-11ea-822b-294ca0e2791a"
+        },
+        "additionalInfo": {
+          "layoutX": 864,
+          "layoutY": 52,
+          "ruleChainNodeId": "rule-chain-node-3"
+        },
+        "type": "Post attributes"
       }
     ]
   }

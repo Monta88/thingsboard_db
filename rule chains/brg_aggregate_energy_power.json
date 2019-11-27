@@ -8,121 +8,103 @@
     "configuration": null
   },
   "metadata": {
-    "firstNodeIndex": 12,
+    "firstNodeIndex": 3,
     "nodes": [
       {
         "additionalInfo": {
-          "layoutX": 1111,
-          "layoutY": 153
-        },
-        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
-        "name": "Circuit: ts->sa_main",
-        "debugMode": false,
-        "configuration": {
-          "jsScript": "// Convert message and store it as tmp to POST_ATTRIBUTES_REQUEST\n\nvar msg_sa_main = {};\n\nif (msg.active_power_positive) msg_sa_main.sa_main_active_power_positive = msg.active_power_positive;\nif (msg.active_power_negative) msg_sa_main.sa_main_active_power_negative = msg.active_power_negative;\nif (msg.active_energy_import)  msg_sa_main.sa_main_active_energy_import  = msg.active_energy_import;\nif (msg.active_energy_export)  msg_sa_main.sa_main_active_energy_export  = msg.active_energy_export;\n\nmsgType_sa_main = \"POST_ATTRIBUTES_REQUEST\";\n\nreturn {msg: msg_sa_main, metadata: metadata, msgType: msgType_sa_main};\n"
-        }
-      },
-      {
-        "additionalInfo": {
-          "layoutX": 1111,
-          "layoutY": 231
-        },
-        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
-        "name": "Circuit: ts->sa_circuit",
-        "debugMode": false,
-        "configuration": {
-          "jsScript": "// Convert message and store it as tmp to POST_ATTRIBUTES_REQUEST\n\nvar msg_sa_circuit = {};\n\nif (msg.active_power_positive) msg_sa_circuit.sa_circuit_active_power_positive = msg.active_power_positive;\nif (msg.active_power_negative) msg_sa_circuit.sa_circuit_active_power_negative = msg.active_power_negative;\nif (msg.active_energy_import)  msg_sa_circuit.sa_circuit_active_energy_import  = msg.active_energy_import;\nif (msg.active_energy_export)  msg_sa_circuit.sa_circuit_active_energy_export  = msg.active_energy_export;\n\nmsgType_sa_circuit = \"POST_ATTRIBUTES_REQUEST\";\n\nreturn {msg: msg_sa_circuit, metadata: metadata, msgType: msgType_sa_circuit};\n"
-        }
-      },
-      {
-        "additionalInfo": {
-          "layoutX": 920,
-          "layoutY": 855
-        },
-        "type": "org.thingsboard.rule.engine.metadata.TbGetAttributesNode",
-        "name": "Sums to meta",
-        "debugMode": false,
-        "configuration": {
-          "clientAttributeNames": [],
-          "sharedAttributeNames": [],
-          "serverAttributeNames": [
-            "sa_sum_main_active_power_positive",
-            "sa_sum_main_active_power_negative",
-            "sa_sum_main_active_energy_import",
-            "sa_sum_main_active_energy_export",
-            "sa_sum_circuit_active_power_positive",
-            "sa_sum_circuit_active_power_negative",
-            "sa_sum_circuit_active_energy_import",
-            "sa_sum_circuit_active_energy_export"
-          ],
-          "latestTsKeyNames": [],
-          "tellFailureIfAbsent": false
-        }
-      },
-      {
-        "additionalInfo": {
-          "layoutX": 1460,
-          "layoutY": 152
-        },
-        "type": "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode",
-        "name": "save",
-        "debugMode": false,
-        "configuration": {
-          "scope": "SERVER_SCOPE"
-        }
-      },
-      {
-        "additionalInfo": {
-          "layoutX": 72,
-          "layoutY": 469
-        },
-        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
-        "name": "Documentation",
-        "debugMode": false,
-        "configuration": {
-          "jsScript": "/*\n\nFind all assets [x] related from iot1911_energy_groups\n\nFind all attributes [y] (listed below) from [x] and sum them\n\nSum  tmp_active_power_positive -> tmp_active_power_consumption\nSum  tmp_active_power_negative -> tmp_active_power_production\nSum energy export\nSum energy import\n\n*/\n\nreturn false;"
-        }
-      },
-      {
-        "additionalInfo": {
-          "layoutX": 54,
-          "layoutY": 594
-        },
-        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
-        "name": "Documentation",
-        "debugMode": false,
-        "configuration": {
-          "jsScript": "/*\n\nOn all Main meters:\n\nSum  tmp_active_power_positive -> tmp_active_power_consumption\nSum  tmp_active_power_negative -> tmp_active_power_production\n\n*/\n\nreturn false;"
-        }
-      },
-      {
-        "additionalInfo": {
-          "layoutX": 612,
-          "layoutY": 857
-        },
-        "type": "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode",
-        "name": "save",
-        "debugMode": false,
-        "configuration": {
-          "scope": "SERVER_SCOPE"
-        }
-      },
-      {
-        "additionalInfo": {
-          "layoutX": 332,
-          "layoutY": 860
+          "layoutX": 376,
+          "layoutY": 556
         },
         "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
         "name": "telemetry to attribute",
         "debugMode": false,
         "configuration": {
-          "jsScript": "// Convert all messages to POST_ATTRIBUTES_REQUEST\n\nmsgType_sa = \"POST_ATTRIBUTES_REQUEST\";\nreturn {msg: msg, metadata: metadata, msgType: msgType_sa};\n\n"
+          "jsScript": "// Convert all messages to POST_ATTRIBUTES_REQUEST\n\nmsgType_sa_par = \"POST_ATTRIBUTES_REQUEST\";\nreturn {msg: msg, metadata: metadata, msgType: msgType_sa_par};\n\n"
         }
       },
       {
         "additionalInfo": {
-          "layoutX": 45,
-          "layoutY": 865
+          "layoutX": 1381,
+          "layoutY": 704
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "save",
+        "debugMode": false,
+        "configuration": {
+          "defaultTTL": 0
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 599,
+          "layoutY": 151
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbCheckMessageNode",
+        "name": "check field",
+        "debugMode": false,
+        "configuration": {
+          "messageNames": [
+            "active_power_positive",
+            "active_power_negative",
+            "active_energy_import",
+            "active_energy_export"
+          ],
+          "metadataNames": [],
+          "checkAllKeys": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 363,
+          "layoutY": 154
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbOriginatorTypeSwitchNode",
+        "name": "Device",
+        "debugMode": false,
+        "configuration": {
+          "version": 0
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 847,
+          "layoutY": 154
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Test device type (Main)",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "// Check if device is \"main\"\nfilter = new RegExp(/main/ig);\nfound = filter.test(metadata.deviceType);\n\nreturn found;\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1392,
+          "layoutY": 861
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode",
+        "name": "save",
+        "debugMode": false,
+        "configuration": {
+          "scope": "SERVER_SCOPE"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 966,
+          "layoutY": 860
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "rest = sum_main - sum_circuit",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "// Convert message and store it as calc to POST_ATTRIBUTES_REQUEST\n// Calculate the \"rest\" power from total_power and - consumed_power\n\nmsg_sa_rest = {};\n\nsa_rest_active_power_positive = metadata.ss_sa_sum_main_active_power_positive - metadata.ss_sa_sum_circuit_active_power_positive;\nsa_rest_active_power_negative = metadata.ss_sa_sum_main_active_power_negative - metadata.ss_sa_sum_circuit_active_power_negative;\nsa_rest_active_energy_import  = metadata.ss_sa_sum_main_active_energy_import  - metadata.ss_sa_sum_circuit_active_energy_import;\nsa_rest_active_energy_export  = metadata.ss_sa_sum_main_active_energy_export  - metadata.ss_sa_sum_circuit_active_energy_export;\n\nif (sa_rest_active_power_positive) msg_sa_rest.sa_rest_active_power_positive = sa_rest_active_power_positive;\nif (sa_rest_active_power_negative) msg_sa_rest.sa_rest_active_power_negative = sa_rest_active_power_negative;  \nif (sa_rest_active_energy_import)  msg_sa_rest.sa_rest_active_energy_import  = sa_rest_active_energy_import;\nif (sa_rest_active_energy_export)  msg_sa_rest.sa_rest_active_energy_export  = sa_rest_active_energy_export;\n\nreturn {msg: msg_sa_rest, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 54,
+          "layoutY": 675
         },
         "type": "org.thingsboard.rule.engine.analytics.latest.telemetry.TbAggLatestTelemetryNode",
         "name": "Sum power and energy",
@@ -148,7 +130,7 @@
             },
             "childRelationsQuery": {
               "direction": "FROM",
-              "maxLevel": 4,
+              "maxLevel": 3,
               "filters": [
                 {
                   "relationType": "Contains",
@@ -187,7 +169,7 @@
               "source": "sa_main_active_energy_export",
               "sourceScope": "SERVER_SCOPE",
               "defaultValue": 0,
-              "target": "sa_sum_main_active_energy_production",
+              "target": "sa_sum_main_active_energy_export",
               "aggFunction": "SUM"
             },
             {
@@ -230,20 +212,20 @@
       },
       {
         "additionalInfo": {
-          "layoutX": 1222,
-          "layoutY": 849
+          "layoutX": 32,
+          "layoutY": 854
         },
         "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
-        "name": "rest = sum_main - sum_circuit",
+        "name": "telemetry to attribute",
         "debugMode": false,
         "configuration": {
-          "jsScript": "// Convert message and store it as calc to POST_ATTRIBUTES_REQUEST\n// Calculate the \"rest\" power from total_power and - consumed_power\n\nmsg_rest = {};\n\nsa_rest_active_power_positive = metadata.ss_sa_sum_main_active_power_positive - metadata.ss_sa_sum_circuit_active_power_positive;\nsa_rest_active_power_negative = metadata.ss_sa_sum_main_active_power_negative - metadata.ss_sa_sum_circuit_active_power_negative;\nsa_rest_active_energy_import  = metadata.ss_sa_sum_main_energy_import         - metadata.ss_sa_sum_circuit_active_energy_impoprt;\nsa_rest_active_energy_export  = metadata.ss_sa_sum_main_energy_export         - metadata.ss_sa_sum_circuit_active_energy_export;\n\nif (sa_rest_active_power_positive) msg_rest.sa_rest_active_power_positive = sa_rest_active_power_positive;\nif (sa_rest_active_power_negative) msg_rest.sa_rest_active_power_negative = sa_rest_active_power_negative;  \nif (sa_rest_active_energy_import)  msg_rest.sa_rest_active_energy_import  = sa_rest_active_energy_import;\nif (sa_rest_active_energy_export)  msg_rest.sa_rest_active_energy_export  = sa_rest_active_energy_export;\n\nreturn {msg: msg_rest, metadata: metadata, msgType: msgType};"
+          "jsScript": "// Convert all messages to POST_ATTRIBUTES_REQUEST\n\nmsgType_sa_par = \"POST_ATTRIBUTES_REQUEST\";\nreturn {msg: msg, metadata: metadata, msgType: msgType_sa_par};\n\n"
         }
       },
       {
         "additionalInfo": {
-          "layoutX": 1504,
-          "layoutY": 861
+          "layoutX": 323,
+          "layoutY": 859
         },
         "type": "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode",
         "name": "save",
@@ -254,103 +236,292 @@
       },
       {
         "additionalInfo": {
-          "layoutX": 847,
-          "layoutY": 154
+          "layoutX": 295,
+          "layoutY": 432
         },
         "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
-        "name": "Test device type (Main)",
+        "name": "Documentation",
         "debugMode": false,
         "configuration": {
-          "jsScript": "// Check if device is \"main\"\nfilter = new RegExp(/main/ig);\nfound = filter.test(metadata.deviceType);\n\nreturn found;\n"
+          "jsScript": "/*\n\nUse aggregation to \"move\" values from meters up from device to parent asset. The following values are moved and converted:\n\nts:active_energy_export     -> sa:sa_active_energy_export\nts:active_energy_import     -> sa:sa_active_energy_import\nts:active_power_negative    -> sa:sa_active_power_negative\nts:active_power_positive    -> sa:sa_active_power_positive\n\n*/\n\nreturn false;"
         }
       },
       {
         "additionalInfo": {
-          "layoutX": 363,
-          "layoutY": 154
+          "layoutX": 84,
+          "layoutY": 980
         },
-        "type": "org.thingsboard.rule.engine.filter.TbOriginatorTypeSwitchNode",
-        "name": "Device",
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Documentation",
         "debugMode": false,
         "configuration": {
-          "version": 0
+          "jsScript": "/*\n\nFind all assets [x] related from iot1911_energy_groups\n\nFind all attributes [y] (listed below) from [x] and sum them\n\nSum  tmp_active_power_positive -> tmp_active_power_consumption\nSum  tmp_active_power_negative -> tmp_active_power_production\nSum energy export\nSum energy import\n\n*/\n\nreturn false;"
         }
       },
       {
         "additionalInfo": {
-          "layoutX": 599,
-          "layoutY": 151
+          "layoutX": 1460,
+          "layoutY": 152
         },
-        "type": "org.thingsboard.rule.engine.filter.TbCheckMessageNode",
-        "name": "check field",
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode",
+        "name": "save",
         "debugMode": false,
         "configuration": {
-          "messageNames": [
-            "active_power_positive",
-            "active_power_negative",
-            "active_energy_import",
-            "active_energy_export"
+          "scope": "SERVER_SCOPE"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 658,
+          "layoutY": 859
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetAttributesNode",
+        "name": "Sums to meta",
+        "debugMode": false,
+        "configuration": {
+          "clientAttributeNames": [],
+          "sharedAttributeNames": [],
+          "serverAttributeNames": [
+            "sa_sum_main_active_power_positive",
+            "sa_sum_main_active_power_negative",
+            "sa_sum_main_active_energy_import",
+            "sa_sum_main_active_energy_export",
+            "sa_sum_circuit_active_power_positive",
+            "sa_sum_circuit_active_power_negative",
+            "sa_sum_circuit_active_energy_import",
+            "sa_sum_circuit_active_energy_export"
           ],
-          "metadataNames": [],
-          "checkAllKeys": false
+          "latestTsKeyNames": [],
+          "tellFailureIfAbsent": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1111,
+          "layoutY": 231
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Circuit: ts->sa_circuit",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "// Convert message and store it as tmp to POST_ATTRIBUTES_REQUEST\n\nvar msg_sa_circuit = {};\n\nif (msg.active_power_positive) msg_sa_circuit.sa_circuit_active_power_positive = msg.active_power_positive;\nif (msg.active_power_negative) msg_sa_circuit.sa_circuit_active_power_negative = msg.active_power_negative;\nif (msg.active_energy_import)  msg_sa_circuit.sa_circuit_active_energy_import  = msg.active_energy_import;\nif (msg.active_energy_export)  msg_sa_circuit.sa_circuit_active_energy_export  = msg.active_energy_export;\n\nmsgType_sa_par_circuit = \"POST_ATTRIBUTES_REQUEST\";\n\nreturn {msg: msg_sa_circuit, metadata: metadata, msgType: msgType_sa_par_circuit};\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1111,
+          "layoutY": 153
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Circuit: ts->sa_main",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "// Convert message and store it as tmp to POST_ATTRIBUTES_REQUEST\n\nvar msg_sa_main = {};\n\nif (msg.active_power_positive) msg_sa_main.sa_main_active_power_positive = msg.active_power_positive;\nif (msg.active_power_negative) msg_sa_main.sa_main_active_power_negative = msg.active_power_negative;\nif (msg.active_energy_import)  msg_sa_main.sa_main_active_energy_import  = msg.active_energy_import;\nif (msg.active_energy_export)  msg_sa_main.sa_main_active_energy_export  = msg.active_energy_export;\n\nmsgType_sa_par_main = \"POST_ATTRIBUTES_REQUEST\";\n\nreturn {msg: msg_sa_main, metadata: metadata, msgType: msgType_sa_par_main};\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 972,
+          "layoutY": 697
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "To telemetry",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "// Convert message and store it as calc to POST_TIMESERIES_REQUEST\n\nmsg_ts = {};\n\n//if (msg.sa_sum_main_active_power_positive) msg_ts.ts_sum_main_active_power_positive = msg.sa_sum_main_active_power_positive;\n//if (msg.sa_sum_main_active_power_negative) msg_ts.ts_sum_main_active_power_negative = msg.sa_sum_main_active_power_negative;\n//if (msg.sa_sum_main_active_energy_import)  msg_ts.ts_sum_main_active_energy_import  = msg.sa_sum_main_active_energy_import;\n//if (msg.sa_sum_main_active_energy_export)  msg_ts.ts_sum_main_active_energy_export  = msg.sa_sum_main_active_energy_export;\n\n//if (msg.sa_sum_circuit_active_power_positive) msg_ts.ts_sum_circuit_active_power_positive = msg.sa_sum_circuit_active_power_positive;\n//if (msg.sa_sum_circuit_active_power_negative) msg_ts.ts_sum_circuit_active_power_negative = msg.sa_sum_circuit_active_power_negative;\nif (msg.sa_sum_circuit_active_energy_import)  msg_ts.ts_sum_circuit_active_energy_import  = msg.sa_sum_circuit_active_energy_import;\n//if (msg.sa_sum_circuit_active_energy_export)  msg_ts.ts_sum_circuit_active_energy_export  = msg.sa_sum_circuit_active_energy_export;\n\n//if (msg.sa_rest_active_power_positive) msg_ts.ts_rest_active_power_positive = msg.sa_rest_active_power_positive;\n//if (msg.sa_rest_active_power_negative) msg_ts.ts_rest_active_power_negative = msg.sa_rest_active_power_negative;  \nif (msg.sa_rest_active_energy_import)  msg_ts.ts_rest_active_energy_import  = msg.sa_rest_active_energy_import;\n//if (msg.sa_rest_active_energy_export)  msg_ts.ts_rest_active_energy_export  = msg.sa_rest_active_energy_export;\n\nmsgType_ts_ptr = \"POST_TELEMETRY_REQUEST\";\n//msgType_ts = \"POST_ATTRIBUTES_REQUEST\";\n\nreturn {msg: msg_ts, metadata: metadata, msgType: msgType_ts_ptr};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 77,
+          "layoutY": 554
+        },
+        "type": "org.thingsboard.rule.engine.analytics.latest.telemetry.TbAggLatestTelemetryNode",
+        "name": "Sum power and energy",
+        "debugMode": false,
+        "configuration": {
+          "parentEntitiesQuery": {
+            "type": "relationsQuery",
+            "rootEntityId": {
+              "entityType": "ASSET",
+              "id": "38dcc4d0-0b90-11ea-822b-294ca0e2791a"
+            },
+            "relationsQuery": {
+              "direction": "FROM",
+              "maxLevel": 4,
+              "filters": [
+                {
+                  "relationType": "Contains",
+                  "entityTypes": [
+                    "ASSET"
+                  ]
+                }
+              ]
+            },
+            "childRelationsQuery": {
+              "direction": "FROM",
+              "maxLevel": 1,
+              "filters": [
+                {
+                  "relationType": "Contains",
+                  "entityTypes": [
+                    "DEVICE"
+                  ]
+                }
+              ]
+            }
+          },
+          "periodTimeUnit": "MINUTES",
+          "periodValue": 1,
+          "aggMappings": [
+            {
+              "source": "active_power_positive",
+              "sourceScope": "LATEST_TELEMETRY",
+              "defaultValue": 0,
+              "target": "sa_active_power_positive",
+              "aggFunction": "SUM"
+            },
+            {
+              "source": "active_power_negative",
+              "sourceScope": "LATEST_TELEMETRY",
+              "defaultValue": 0,
+              "target": "sa_active_power_negative",
+              "aggFunction": "SUM"
+            },
+            {
+              "source": "active_energy_import",
+              "sourceScope": "LATEST_TELEMETRY",
+              "defaultValue": 0,
+              "target": "sa_active_energy_import",
+              "aggFunction": "SUM"
+            },
+            {
+              "source": "active_energy_export",
+              "sourceScope": "LATEST_TELEMETRY",
+              "defaultValue": 0,
+              "target": "sa_active_energy_export",
+              "aggFunction": "SUM"
+            },
+            {
+              "source": "active_power_positive",
+              "sourceScope": "LATEST_TELEMETRY",
+              "defaultValue": 0,
+              "target": "sa_active_count",
+              "aggFunction": "COUNT"
+            }
+          ]
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 653,
+          "layoutY": 557
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode",
+        "name": "save",
+        "debugMode": false,
+        "configuration": {
+          "scope": "SERVER_SCOPE"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1465,
+          "layoutY": 232
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode",
+        "name": "save",
+        "debugMode": false,
+        "configuration": {
+          "scope": "SERVER_SCOPE"
         }
       }
     ],
     "connections": [
       {
         "fromIndex": 0,
-        "toIndex": 3,
-        "type": "Success"
-      },
-      {
-        "fromIndex": 1,
-        "toIndex": 3,
+        "toIndex": 18,
         "type": "Success"
       },
       {
         "fromIndex": 2,
-        "toIndex": 9,
+        "toIndex": 4,
+        "type": "True"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 2,
+        "type": "Device"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 15,
+        "type": "True"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 14,
+        "type": "False"
+      },
+      {
+        "fromIndex": 6,
+        "toIndex": 16,
         "type": "Success"
       },
       {
         "fromIndex": 6,
-        "toIndex": 2,
+        "toIndex": 5,
         "type": "Success"
       },
       {
         "fromIndex": 7,
-        "toIndex": 6,
+        "toIndex": 8,
         "type": "Success"
       },
       {
         "fromIndex": 8,
-        "toIndex": 7,
+        "toIndex": 16,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 8,
+        "toIndex": 9,
         "type": "Success"
       },
       {
         "fromIndex": 9,
-        "toIndex": 10,
+        "toIndex": 13,
         "type": "Success"
       },
       {
-        "fromIndex": 11,
-        "toIndex": 1,
-        "type": "False"
-      },
-      {
-        "fromIndex": 11,
-        "toIndex": 0,
-        "type": "True"
-      },
-      {
-        "fromIndex": 12,
-        "toIndex": 13,
-        "type": "Device"
-      },
-      {
         "fromIndex": 13,
-        "toIndex": 11,
-        "type": "True"
+        "toIndex": 6,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 14,
+        "toIndex": 19,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 15,
+        "toIndex": 12,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 16,
+        "toIndex": 1,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 17,
+        "toIndex": 0,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 17,
+        "toIndex": 10,
+        "type": "Failure"
       }
     ],
     "ruleChainConnections": null
