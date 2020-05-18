@@ -1,0 +1,907 @@
+{
+  "ruleChain": {
+    "additionalInfo": null,
+    "name": "data_generator_hotelN",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null
+  },
+  "metadata": {
+    "firstNodeIndex": null,
+    "nodes": [
+      {
+        "additionalInfo": {
+          "layoutX": 194,
+          "layoutY": 561
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "f3161ed0-7e2e-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_4\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 196,
+          "layoutY": 604
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "f95edac0-7e2e-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_5\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 197,
+          "layoutY": 647
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "ff6a1880-7e2e-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_6\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 202,
+          "layoutY": 690
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "05873090-7e2f-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_7\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 205,
+          "layoutY": 730
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "0c111430-7e2f-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_8\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 207,
+          "layoutY": 775
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "12cd5270-7e2f-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_9\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 212,
+          "layoutY": 816
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "25202dd0-7e2f-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_10\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 192,
+          "layoutY": 427
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "c06632e0-7e2e-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_1\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 284,
+          "layoutY": 54
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Hvac_1_1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "11bffd20-6ad3-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = {air_flow_extract: Math.random() * 35,air_flow_supply: Math.random() * 35,air_pressure_extract: Math.random() * 35,air_pressure_supply: Math.random() * 35, air_temperature_extract: Math.random() * 35,air_temperature_intake: Math.random() * 35, air_temperature_supply: Math.random() * 35, cool_coil_level: Math.random() * 35, fan_level_extract: Math.random() * 35,fan_level_supply: Math.random() * 35,heat_coil_level: Math.random() *35, \theat_exchanger_level: Math.random() * 35,run_state: Math.random() * 35};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\nmetadata.deviceType=\"HVAC_Controller_Unit\";\nmetadata.deviceName=\"iot2004_hvac_controller_2\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 285,
+          "layoutY": 101
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Hvac_1_1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "21b44f10-6ad3-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = {air_flow_extract: Math.random() * 35,air_flow_supply: Math.random() * 35,air_pressure_extract: Math.random() * 35,air_pressure_supply: Math.random() * 35, air_temperature_extract: Math.random() * 35,air_temperature_intake: Math.random() * 35, air_temperature_supply: Math.random() * 35, cool_coil_level: Math.random() * 35, fan_level_extract: Math.random() * 35,fan_level_supply: Math.random() * 35,heat_coil_level: Math.random() *35, \theat_exchanger_level: Math.random() * 35,run_state: Math.random() * 35};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\nmetadata.deviceType=\"HVAC_Controller_Unit\";\nmetadata.deviceName=\"iot2004_hvac_controller_3\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 285,
+          "layoutY": 147
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Hvac_1_1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "56d1b890-6ad3-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = {air_flow_extract: Math.random() * 35,air_flow_supply: Math.random() * 35,air_pressure_extract: Math.random() * 35,air_pressure_supply: Math.random() * 35, air_temperature_extract: Math.random() * 35,air_temperature_intake: Math.random() * 35, air_temperature_supply: Math.random() * 35, cool_coil_level: Math.random() * 35, fan_level_extract: Math.random() * 35,fan_level_supply: Math.random() * 35,heat_coil_level: Math.random() *35, \theat_exchanger_level: Math.random() * 35,run_state: Math.random() * 35};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\nmetadata.deviceType=\"HVAC_Controller_Unit\";\nmetadata.deviceName=\"iot2004_hvac_controller_4\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 284,
+          "layoutY": 191
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Hvac_1_1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "c410f1f0-6ad3-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = {air_flow_extract: Math.random() * 35,air_flow_supply: Math.random() * 35,air_pressure_extract: Math.random() * 35,air_pressure_supply: Math.random() * 35, air_temperature_extract: Math.random() * 35,air_temperature_intake: Math.random() * 35, air_temperature_supply: Math.random() * 35, cool_coil_level: Math.random() * 35, fan_level_extract: Math.random() * 35,fan_level_supply: Math.random() * 35,heat_coil_level: Math.random() *35, \theat_exchanger_level: Math.random() * 35,run_state: Math.random() * 35};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\nmetadata.deviceType=\"HVAC_Controller_Unit\";\nmetadata.deviceName=\"iot2005_hvac_controller_1\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 284,
+          "layoutY": 236
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Hvac_1_1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "cf5a8080-6ad3-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = {air_flow_extract: Math.random() * 35,air_flow_supply: Math.random() * 35,air_pressure_extract: Math.random() * 35,air_pressure_supply: Math.random() * 35, air_temperature_extract: Math.random() * 35,air_temperature_intake: Math.random() * 35, air_temperature_supply: Math.random() * 35, cool_coil_level: Math.random() * 35, fan_level_extract: Math.random() * 35,fan_level_supply: Math.random() * 35,heat_coil_level: Math.random() *35, \theat_exchanger_level: Math.random() * 35,run_state: Math.random() * 35};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\nmetadata.deviceType=\"HVAC_Controller_Unit\";\nmetadata.deviceName=\"iot2005_hvac_controller_2\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 281,
+          "layoutY": 9
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Hvac_1_1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "0733cb20-6ad3-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = {air_flow_extract: Math.random() * 35,air_flow_supply: Math.random() * 35,air_pressure_extract: Math.random() * 35,air_pressure_supply: Math.random() * 35, air_temperature_extract: Math.random() * 35,air_temperature_intake: Math.random() * 35, air_temperature_supply: Math.random() * 35, cool_coil_level: Math.random() * 35, fan_level_extract: Math.random() * 35,fan_level_supply: Math.random() * 35,heat_coil_level: Math.random() *35, \theat_exchanger_level: Math.random() * 35,run_state: Math.random() * 35};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\nmetadata.deviceType=\"HVAC_Controller_Unit\";\nmetadata.deviceName=\"iot2004_hvac_controller_1\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 873,
+          "layoutY": 209
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Meter_1_1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "e5310460-6ad3-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 135000, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 300000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"main\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 875,
+          "layoutY": 305
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Meter_1_1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 600,
+          "originatorId": "a5732820-6ad4-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 135000, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 130000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"main\";\n metadata.deviceName=\"iot2005_energy_meter_electrical_3p_1\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 875,
+          "layoutY": 257
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Meter_1_1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "eca68080-6ad3-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"main\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_2\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 196,
+          "layoutY": 520
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "ebe43b60-7e2e-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_3\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 195,
+          "layoutY": 476
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "e5594650-7e2e-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_2\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 224,
+          "layoutY": 1335
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "6bd252d0-7e2f-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_20\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 224,
+          "layoutY": 1287
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "63daae60-7e2f-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_19\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 218,
+          "layoutY": 1239
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "5dbc0fb0-7e2f-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_18\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 219,
+          "layoutY": 1193
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "5672fac0-7e2f-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_17\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 213,
+          "layoutY": 1145
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "5170efa0-7e2f-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_16\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 210,
+          "layoutY": 1101
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "4b551010-7e2f-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_15\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 212,
+          "layoutY": 1051
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "401d5bd0-7e2f-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_14\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 210,
+          "layoutY": 1005
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "3a2d4730-7e2f-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_13\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 216,
+          "layoutY": 914
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "30072a00-7e2f-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_11\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 212,
+          "layoutY": 955
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Circuit 1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 60,
+          "originatorId": "350898e0-7e2f-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 3500, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 3000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2004_energy_meter_electrical_3p_1_12\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 982,
+          "layoutY": 544
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Meter_1_1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 600,
+          "originatorId": "92afefe0-7fea-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 35000, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 30000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2005_energy_meter_electrical_3p_1_1\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 976,
+          "layoutY": 602
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Meter_1_1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 600,
+          "originatorId": "a14ffc70-7fea-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 35000, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 30000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2005_energy_meter_electrical_3p_1_2\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 982,
+          "layoutY": 666
+        },
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "Meter_1_1",
+        "debugMode": false,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 600,
+          "originatorId": "a8c41900-7fea-11ea-947e-e79c2b4e0867",
+          "originatorType": "DEVICE",
+          "jsScript": "var msg = { voltage_phase_1: Math.random() * 35,voltage_phase_2: Math.random() * 35,voltage_phase_3: Math.random() * 35, voltage_line_1_2: Math.random() * 35, voltage_line_2_3: Math.random() * 35,voltage_line_3_1: Math.random() * 35, current_phase_1: Math.random() * 35, current_phase_2: Math.random() * 35, current_phase_3: Math.random() * 35, active_power_positive: Math.random() * 35000, active_power_negative: Math.random() *35, active_energy_import: Math.random() * 30000};\n\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n metadata.deviceType=\"circuit\";\n metadata.deviceName=\"iot2005_energy_meter_electrical_3p_1_3\";\nreturn { msg: msg, metadata: metadata, msgType: msgType };"
+        }
+      }
+    ],
+    "connections": null,
+    "ruleChainConnections": [
+      {
+        "fromIndex": 0,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 676,
+          "layoutY": 604,
+          "ruleChainNodeId": "rule-chain-node-35"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 1,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 676,
+          "layoutY": 604,
+          "ruleChainNodeId": "rule-chain-node-35"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 2,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 676,
+          "layoutY": 604,
+          "ruleChainNodeId": "rule-chain-node-35"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 3,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 676,
+          "layoutY": 604,
+          "ruleChainNodeId": "rule-chain-node-35"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 4,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 676,
+          "layoutY": 604,
+          "ruleChainNodeId": "rule-chain-node-35"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 5,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 676,
+          "layoutY": 604,
+          "ruleChainNodeId": "rule-chain-node-35"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 6,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 676,
+          "layoutY": 604,
+          "ruleChainNodeId": "rule-chain-node-35"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 7,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 676,
+          "layoutY": 604,
+          "ruleChainNodeId": "rule-chain-node-35"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 8,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 673,
+          "layoutY": 127,
+          "ruleChainNodeId": "rule-chain-node-37"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 9,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 673,
+          "layoutY": 127,
+          "ruleChainNodeId": "rule-chain-node-37"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 10,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 673,
+          "layoutY": 127,
+          "ruleChainNodeId": "rule-chain-node-37"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 13,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 673,
+          "layoutY": 127,
+          "ruleChainNodeId": "rule-chain-node-37"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 14,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 1181,
+          "layoutY": 236,
+          "ruleChainNodeId": "rule-chain-node-36"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 15,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 1181,
+          "layoutY": 236,
+          "ruleChainNodeId": "rule-chain-node-36"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 17,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 676,
+          "layoutY": 604,
+          "ruleChainNodeId": "rule-chain-node-35"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 18,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 676,
+          "layoutY": 604,
+          "ruleChainNodeId": "rule-chain-node-35"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 19,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 697,
+          "layoutY": 1077,
+          "ruleChainNodeId": "rule-chain-node-34"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 20,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 697,
+          "layoutY": 1077,
+          "ruleChainNodeId": "rule-chain-node-34"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 21,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 697,
+          "layoutY": 1077,
+          "ruleChainNodeId": "rule-chain-node-34"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 22,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 697,
+          "layoutY": 1077,
+          "ruleChainNodeId": "rule-chain-node-34"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 23,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 697,
+          "layoutY": 1077,
+          "ruleChainNodeId": "rule-chain-node-34"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 24,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 697,
+          "layoutY": 1077,
+          "ruleChainNodeId": "rule-chain-node-34"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 25,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 697,
+          "layoutY": 1077,
+          "ruleChainNodeId": "rule-chain-node-34"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 26,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 697,
+          "layoutY": 1077,
+          "ruleChainNodeId": "rule-chain-node-34"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 27,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 697,
+          "layoutY": 1077,
+          "ruleChainNodeId": "rule-chain-node-34"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 28,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 697,
+          "layoutY": 1077,
+          "ruleChainNodeId": "rule-chain-node-34"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 29,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 1323,
+          "layoutY": 603,
+          "ruleChainNodeId": "rule-chain-node-38"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 30,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 1323,
+          "layoutY": 603,
+          "ruleChainNodeId": "rule-chain-node-38"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 31,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "44e67830-57c5-11ea-ab0b-c78ed3d5af39"
+        },
+        "additionalInfo": {
+          "layoutX": 1323,
+          "layoutY": 603,
+          "ruleChainNodeId": "rule-chain-node-38"
+        },
+        "type": "Success"
+      }
+    ]
+  }
+}

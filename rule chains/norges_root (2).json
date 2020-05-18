@@ -1,0 +1,171 @@
+{
+  "ruleChain": {
+    "additionalInfo": {
+      "description": "Rules for customer Gumpen Gruppen"
+    },
+    "name": "norges_root",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null
+  },
+  "metadata": {
+    "firstNodeIndex": 4,
+    "nodes": [
+      {
+        "additionalInfo": {
+          "layoutX": 616,
+          "layoutY": 336
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbCheckMessageNode",
+        "name": "check filed",
+        "debugMode": false,
+        "configuration": {
+          "messageNames": [
+            "run_state",
+            "operating_mode"
+          ],
+          "metadataNames": [],
+          "checkAllKeys": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 887,
+          "layoutY": 336
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "HVAC_model",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "if (metadata.hasOwnProperty(\"deviceName\"))\n{\n    switch (metadata.deviceName)\n    {\n        case \"iot1920_hvac_controller_1\": metadata.hvac_model = \"swegon_gold_e\"; break;\n        case \"iot1920_hvac_controller_2\": metadata.hvac_model = \"swegon_gold_e\"; break;\n        case \"iot1920_hvac_controller_3\": metadata.hvac_model = \"swegon_gold_e\"; break;\n        case \"iot1920_hvac_controller_4\": metadata.hvac_model = \"swegon_gold_e\"; break;\n        \n    }\n}\n\nreturn {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 559,
+          "layoutY": 437
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbCheckMessageNode",
+        "name": "check filed",
+        "debugMode": false,
+        "configuration": {
+          "messageNames": [
+            "air_temperature_extract_setpoint"
+          ],
+          "metadataNames": [],
+          "checkAllKeys": true
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 895,
+          "layoutY": 442
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "convert data",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "// Convert message and store it as calc to POST_TIMESERIES_REQUEST\n\nvar msg_ts = {};\n\nif (msg.hasOwnProperty(\"air_temperature_extract_setpoint\"))\n    msg_ts.air_temperature_extract_setpoint_telemetry = msg.air_temperature_extract_setpoint;\n\nif (msg.hasOwnProperty(\"air_temperature_supply_setpoint\"))  \n    msg_ts.air_temperature_supply_setpoint_telemetry  = msg.air_temperature_supply_setpoint;\n\nvar msgType_ts_ptr = \"POST_TELEMETRY_REQUEST\";\nreturn {msg: msg_ts, metadata: metadata, msgType: msgType_ts_ptr};\n\n\n\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 369,
+          "layoutY": 152
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbMsgTypeSwitchNode",
+        "name": "Message Type check",
+        "debugMode": false,
+        "configuration": {
+          "version": 0
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1184,
+          "layoutY": 439
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "save in db",
+        "debugMode": false,
+        "configuration": {
+          "defaultTTL": 0
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 0,
+        "toIndex": 1,
+        "type": "True"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 3,
+        "type": "True"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 5,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 2,
+        "type": "Post attributes"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 0,
+        "type": "Post telemetry"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 0,
+        "type": "Post attributes"
+      }
+    ],
+    "ruleChainConnections": [
+      {
+        "fromIndex": 1,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "d3ce74b0-6a8c-11ea-947e-e79c2b4e0867"
+        },
+        "additionalInfo": {
+          "layoutX": 1180,
+          "layoutY": 332,
+          "ruleChainNodeId": "rule-chain-node-10"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 4,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "aa93b480-0c5d-11ea-822b-294ca0e2791a"
+        },
+        "additionalInfo": {
+          "layoutX": 882,
+          "layoutY": 47,
+          "ruleChainNodeId": "rule-chain-node-9"
+        },
+        "type": "Post telemetry"
+      },
+      {
+        "fromIndex": 4,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "bc28a980-4826-11ea-822b-294ca0e2791a"
+        },
+        "additionalInfo": {
+          "layoutX": 880,
+          "layoutY": 190,
+          "ruleChainNodeId": "rule-chain-node-8"
+        },
+        "type": "Post attributes"
+      }
+    ]
+  }
+}

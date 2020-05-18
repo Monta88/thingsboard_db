@@ -1,0 +1,248 @@
+{
+  "ruleChain": {
+    "additionalInfo": null,
+    "name": "hvac_ui",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null
+  },
+  "metadata": {
+    "firstNodeIndex": 3,
+    "nodes": [
+      {
+        "additionalInfo": {
+          "layoutX": 1583,
+          "layoutY": 300
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode",
+        "name": "save",
+        "debugMode": false,
+        "configuration": {
+          "scope": "SERVER_SCOPE"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1297,
+          "layoutY": 302
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Swegon GOLD E",
+        "debugMode": true,
+        "configuration": {
+          "jsScript": "//\n// Ref. Swegon BACnet, GOLD_E_BACnet_170815.pdf\n// GOLD RX/PX/CX/SD Generation E\n// run_state:       Object 592, Operation level\n// operating_mope   Object 793, Communication operation level\n\nmsg_sa = {};\nmsgType_sa_par = \"POST_ATTRIBUTES_REQUEST\";\n\nif ((msg.run_state !== null) & (msg.run_state !== undefined)) switch (msg.run_state)\n{\n    case  1: msg_sa.run_state_ui = 'Vifte utilgjengelig';                      break; // 'Fan not available'\n    case  2: msg_sa.run_state_ui = 'Alarm stopp';                              break; // 'Alarm stop'\n    case  3: msg_sa.run_state_ui = 'Manuell total stopp (ht)';                  break; // 'Manual total stop (on hand terminal)'\n    case  4: msg_sa.run_state_ui = 'Ekstern total stopp (di)';                  break; // 'External total stop (digital input)'\n    case  5: msg_sa.run_state_ui = 'Kommunikasjon total stopp';                break; // 'Communication total stop'\n    case  6: msg_sa.run_state_ui = 'Kommunikasjon normal stopp';               break; // 'Communication normal stop'\n    case  7: msg_sa.run_state_ui = 'Kommunikasjon utvidet stopp';              break; // 'Communication extended normal stop'\n    case  8: msg_sa.run_state_ui = 'Tidskanal total stopp';                    break; // 'Time channel total stop'\n    case  9: msg_sa.run_state_ui = 'Tidskanal normal stopp';                   break; // 'Time channel normal stop'\n    case 10: msg_sa.run_state_ui = 'Tidskanal utvidet normal stopp';           break; // 'Time channel extended normal stop'\n    case 11: msg_sa.run_state_ui = 'Lav hastighet = normal stopp';             break; // 'Low speed=normal stop'\n    case 12: msg_sa.run_state_ui = 'SA vifte starter...';                      break; // 'SA Fan starting up'\n    case 13: msg_sa.run_state_ui = 'Vifteregulering stoppet';                  break; // 'Fan regulation blocked'\n    case 14: msg_sa.run_state_ui = 'ReCO2 100% resirkulasjon';                 break; // 'ReCO2 100% recirculation(1.11)'\n    case 15: msg_sa.run_state_ui = 'Morgen-boost stopp';                       break; // 'Morning boost stop(1.11)'\n    case 16: msg_sa.run_state_ui = 'Periodisk nattvarme stopp';                break; // 'Intermittent night heat stop(1.11)'\n    case 17: msg_sa.run_state_ui = 'Etterkjøler elektrisk varmer';             break; // 'After cooling electric heater'\n    case 18: msg_sa.run_state_ui = 'COOL DX utkoblingsforsinkelse';            break; // 'COOL DX switch off delay'\n    case 19: msg_sa.run_state_ui = 'Spjeldutkoblingsforsinkelse';              break; // 'Damper switch off delay'\n    case 20: msg_sa.run_state_ui = 'Manuell lav hastighet (ht)';                break; // 'Manual low speed (on hand terminal)'\n    case 21: msg_sa.run_state_ui = 'Ekstern lav hastighet (di)';                break; // 'External low speed (digital input)'\n    case 22: msg_sa.run_state_ui = 'Utvidet ekstern lav hastighet';            break; // 'Extended external low speed'\n    case 23: msg_sa.run_state_ui = 'Kommunikasjon lav hastighet';              break; // 'Communication low speed'\n    case 24: msg_sa.run_state_ui = 'Tidskanal lav hastighet';                  break; // 'Time channel low speed'\n    case 25: msg_sa.run_state_ui = 'Morgen-boost lav hastighet';               break; // 'Morning boost low speed'\n    case 26: msg_sa.run_state_ui = 'Periodisk nattvarme lav hastighet';        break; // 'Intermittent night heat low speed'\n    case 27: msg_sa.run_state_ui = 'Manuell høy hastighet (ht)';                break; // 'Manual high speed (on hand terminal)'\n    case 28: msg_sa.run_state_ui = 'Ekstern høy hastighet (di)';                break; // 'External high speed (digital input)'\n    case 29: msg_sa.run_state_ui = 'Utvidet ekstern høy hastighet';            break; // 'Extended external high speed'\n    case 30: msg_sa.run_state_ui = 'Kommunikasjon høy hastighet';              break; // 'Communication high speed'\n    case 31: msg_sa.run_state_ui = 'Tidskanal høy hastighet';                  break; // 'Time channel high speed'\n    case 32: msg_sa.run_state_ui = 'Sommer nattkjøling høy hastighet';         break; // 'Summer night cooling high speed'\n    case 33: msg_sa.run_state_ui = 'Filterkalibrering';                        break; // 'Filter calibration'\n    case 34: msg_sa.run_state_ui = 'RHX avrimingskalibrering';                 break; // 'RHX Defrost calibration '\n    case 35: msg_sa.run_state_ui = 'ReCO2 kalibrering';                        break; // 'ReCO2 calibration'\n    case 36: msg_sa.run_state_ui = 'AHU oppstart';                             break; // 'AHU start up'\n    case 37: msg_sa.run_state_ui = 'Varme nedramping';                         break; // 'Re-heat ramp down'\n    case 38: msg_sa.run_state_ui = 'HX nedramping';                            break; // 'HX ramp down'\n    case 39: msg_sa.run_state_ui = 'Luft-justering';                           break; // 'Air adjustment'\n    case 40: msg_sa.run_state_ui = 'Vifter i drift med aktiv brannalarm';      break; // 'Fans in operation with active fire alarm'\n    case 41: msg_sa.run_state_ui = 'PX omluftspjeldjustering';                 break; // 'PX bypass damper adjustment(1.12)'\n    default: msg_sa.run_state_ui = 'Ukjent (' + msg.run_state + ')';           break;\n};\n\nif ((msg.operating_mode !== null) && (msg.operating_mode !== undefined)) switch (msg.operating_mode)\n{\n    case  1: msg_sa.operating_mode_ui = 'Auto';                             break; //'Auto';\n    case  2: msg_sa.operating_mode_ui = 'Total stopp';                      break; //'Total stop';\n    case  3: msg_sa.operating_mode_ui = 'Lav hastighet';                    break; //'Low speed';\n    case  4: msg_sa.operating_mode_ui = 'Høy hastighet';                    break; //'High speed';\n    case  5: msg_sa.operating_mode_ui = 'Normal stopp';                     break; //'Normal stop';\n    case  6: msg_sa.operating_mode_ui = 'Utvidet normal stopp';             break; //'Extended normal stop';\n    default: msg_sa.operating_mode_ui = 'Ukjent (' + msg.operating_mode + ')';   break;\n};\n\nif ((msg.air_temperature_regulation_mode !== null) && (msg.air_temperature_regulation_mode !== undefined)) switch (msg.air_temperature_regulation_mode)\n{\n    case  1: msg_sa.air_temperature_regulation_mode_ui =  'Ikke aktiv';                 break; // 'Inactive';     \n    case  2: msg_sa.air_temperature_regulation_mode_ui =  'Tilførsel (FRT-1)';          break; // 'ERS-1';     ERS = Extract related supply\n    case  3: msg_sa.air_temperature_regulation_mode_ui =  'Tilførsel (FRT-2)';          break; // 'ERS-2';     ERS = Extract related supply      \n    case  4: msg_sa.air_temperature_regulation_mode_ui =  'Tilluft';                  break; // 'Supply';\n    //case  4: msg_sa.air_temperature_regulation_mode_ui =  'Tilførsel';                  break; // 'Supply';\n    case  5: msg_sa.air_temperature_regulation_mode_ui =  'Avtrekk';                    break; // 'Extract';              \n    case  6: msg_sa.air_temperature_regulation_mode_ui =  'Tilførsel (URT)';            break; // 'Supply (ORS)';   ORS = Outdoor related supply\n    case  7: msg_sa.air_temperature_regulation_mode_ui =  'Avtrekk (URF)';              break; // 'Extract (ORE)';  ORE = Outdoor related extract\n    default: msg_sa.air_temperature_regulation_mode_ui =  'Ukjent (' + air_temperature_regulation_mode + ')';     break;\n};\n\n\nmsg_sa.hvac_model = metadata.hvac_model;\nreturn  {msg: msg_sa, metadata: metadata, msgType: msgType_sa_par};\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 799,
+          "layoutY": 151
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsSwitchNode",
+        "name": "check hvac_model",
+        "debugMode": true,
+        "configuration": {
+          "jsScript": "if (metadata.hasOwnProperty(\"hvac_model\"))\n{\n    switch (metadata.hvac_model)\n    {\n        case \"ab_regin_e283w_3\": \n        case \"ab_regin_s_209464\": \n        case \"swegon_gold_cd\": \n        case \"swegon_gold_e\":\n        case \"siemens_building_technologies\":\n        case \"advantech_wise_4012e\":\n            return metadata.hvac_model;\n            break;\n\n        default: return \"unknown\"; break;\n    }\n}\nelse return \"undefined\";"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 281,
+          "layoutY": 148
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbCheckMessageNode",
+        "name": "run_state or operating_mode",
+        "debugMode": false,
+        "configuration": {
+          "messageNames": [
+            "run_state",
+            "operating_mode"
+          ],
+          "metadataNames": [],
+          "checkAllKeys": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1300,
+          "layoutY": 150
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Siemens Building Technologies (SBT)",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "//\n// Ref. Siemens Building Technologies (SBT)\n// \n// run_state:       \n// operating_mode:  \n\nvar msg_sa = {};\nvar msgType_sa_par = \"POST_ATTRIBUTES_REQUEST\";\n\n\nif (msg.run_state) switch (msg.run_state)\n{\n    case  0: msg_sa.run_state_ui =  'Av';                                  break; // 'Off';      \n    case  1: msg_sa.run_state_ui =  'På';                                  break; // 'On';\n    default: msg_sa.run_state_ui =  'Ukjent (' + msg.run_state + ')';      break;\n};\n\nif (msg.operating_mode) switch (msg.operating_mode)\n{\n    case  1: msg_sa.operating_mode_ui = 'Auto';                            break; //'Auto';\n    case  2: msg_sa.operating_mode_ui = 'Av';                              break; //'Off';\n    case  3: msg_sa.operating_mode_ui = 'På';                              break; //'On';\n    \n    default: msg_sa.operating_mode_ui = 'Ukjent (' + msg.operating_mode + ')';break;\n};\n\nmsg_sa.hvac_model = metadata.hvac_model;\nreturn  {msg: msg_sa, metadata: metadata, msgType: msgType_sa_par};\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1582,
+          "layoutY": 152
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode",
+        "name": "save",
+        "debugMode": false,
+        "configuration": {
+          "scope": "SERVER_SCOPE"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 541,
+          "layoutY": 149
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbCheckMessageNode",
+        "name": "hvac_model",
+        "debugMode": false,
+        "configuration": {
+          "messageNames": [],
+          "metadataNames": [
+            "hvac_model"
+          ],
+          "checkAllKeys": true
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1582,
+          "layoutY": 226
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode",
+        "name": "save",
+        "debugMode": false,
+        "configuration": {
+          "scope": "SERVER_SCOPE"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1298,
+          "layoutY": 225
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Swegon GOLD C/D",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "// Ref. Swegon BACnet, GB.BACnet4809.121017\n// GOLD RX/PX/CX/SD Generation C/D\n// run_state:       Object 0.84, Operation level\n// operating_mode:  Object 2.174, Operation mode, manual\n\nmsg_sa = {};\nmsgType_sa_par = \"POST_ATTRIBUTES_REQUEST\";\n\nif ((msg.run_state !== null) & (msg.run_state !== undefined)) switch (msg.run_state)\n{\n    case  0: msg_sa.run_state_ui =  'Manuell stopp';                     break; // 'Manual stop';                      \n    case  1: msg_sa.run_state_ui =  'Ekstern stopp';                     break; // 'Ext. stop';      \n    case  2: msg_sa.run_state_ui =  'Kommunikasjon stopp 1';             break; // 'Com. stop 1';              \n    case  3: msg_sa.run_state_ui =  'Manuell høy hastighet';             break; // 'Manual high speed';              \n    case  4: msg_sa.run_state_ui =  'Sommernattkjøling';                 break; // 'Summer night cooling';          \n    case  5: msg_sa.run_state_ui =  'Periodisk nattvarme';               break; // 'lnt. night heat';      \n    case  6: msg_sa.run_state_ui =  'Manuell lav hastighet';             break; // 'Manual low speed';              \n    case  7: msg_sa.run_state_ui =  'Ekstern høy hastighet';             break; // 'Ext. high speed';              \n    case  8: msg_sa.run_state_ui =  'Kommunikasjon høy hastighet';       break; // 'Com. high speed';                  \n    case  9: msg_sa.run_state_ui =  'Årskanal stopp';                    break; // 'Year channel stop';      \n    case 10: msg_sa.run_state_ui =  'Årskanal høy hastighet';            break; // 'Year channel high speed';              \n    case 11: msg_sa.run_state_ui =  'Årskanal lav hastighet';            break; // 'Year channel low speed';              \n    case 12: msg_sa.run_state_ui =  'Tidskanal høy hastighet';           break; // 'Time channel high speed';              \n    case 13: msg_sa.run_state_ui =  'Ekstern lav hastighet';             break; // 'Ext. low speed';              \n    case 14: msg_sa.run_state_ui =  'Kommunikasjon lav hastighet';       break; // 'Com. low speed';                  \n    case 15: msg_sa.run_state_ui =  'Tidskanal lav hastighet';           break; // 'Time channel low speed';              \n    case 16: msg_sa.run_state_ui =  'Tidskanal stopp';                   break; // 'Time channel stop';      \n    case 17: msg_sa.run_state_ui =  'Lav hastighet = stopp';             break; // 'Low speed=stop';              \n    case 18: msg_sa.run_state_ui =  'Kommunikasjon stopp 2';             break; // 'Com. sto- 2';              \n    default: msg_sa.run_state_ui =  'Ukjent (' + msg.run_state + ')';    break;\n};\n\nif ((msg.operating_mode !== null) && (msg.operating_mode !== undefined)) switch (msg.operating_mode)\n{\n    case  0: msg_sa.operating_mode_ui = 'Auto';                         break; //'Auto';\n    case  1: msg_sa.operating_mode_ui = 'Stopp 1';                      break; //'Communication stop 1';\n    case  2: msg_sa.operating_mode_ui = 'På, lav hastighet';            break; //'Communication low speed';\n    case  3: msg_sa.operating_mode_ui = 'På, høy hastighet';            break; //'Communication high speed';\n    case  3: msg_sa.operating_mode_ui = 'Stopp 2';                      break; //'Communication stop';\n    default: msg_sa.operating_mode_ui = 'Ukjent (' + msg.operating_mode + ')';   break;\n};\n\nif ((msg.air_temperature_regulation_mode !== null) && (msg.air_temperature_regulation_mode !== undefined)) switch (msg.air_temperature_regulation_mode)\n{\n    case  0: msg_sa.air_temperature_regulation_mode_ui =  'Tilførsel (FRT-1)';           break; // 'ERS-1';     ERS = Extract related supply\n    case  1: msg_sa.air_temperature_regulation_mode_ui =  'Tilførsel (FRT-2)';           break; // 'ERS-2';     ERS = Extract related supply      \n    case  2: msg_sa.air_temperature_regulation_mode_ui =  'Tilførsel';                   break; // 'Supply';\n    case  3: msg_sa.air_temperature_regulation_mode_ui =  'Avtrekk';                     break; // 'Extract';              \n    default: msg_sa.air_temperature_regulation_mode_ui =  'Ukjent (' + air_temperature_regulation_mode + ')';      break;\n};\n\n\nmsg_sa.hvac_model = metadata.hvac_model;\nreturn  {msg: msg_sa, metadata: metadata, msgType: msgType_sa_par};\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1583,
+          "layoutY": 376
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode",
+        "name": "save",
+        "debugMode": false,
+        "configuration": {
+          "scope": "SERVER_SCOPE"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1300,
+          "layoutY": 376
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Advantech WISE-4012E",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "//\n// Ref. Advantech WISE-4012E \"6-ch Input/Output IoT Wireless I/O Module for IoT Developers\n//\n// run_state:       \n// operating_mode:  \n\nmsg_sa = {};\nmsgType_sa_par = \"POST_ATTRIBUTES_REQUEST\";\n\nif (msg.hasOwnProperty(\"run_state\")) switch (msg.run_state)\n{\n    case  0: msg_sa.run_state_ui = 'Av';            break; // 'Off'\n    case  1: msg_sa.run_state_ui = 'På';            break; // 'On'\n    default: msg_sa.run_state_ui = 'Ukjent (' + msg.run_state + ')';           break;\n};\n\nif (msg.hasOwnProperty(\"operating_mode\")) switch (msg.operating_mode)\n{\n    case  0: msg_sa.operating_mode_ui = 'Av';       break; //'Off';\n    case  1: msg_sa.operating_mode_ui = 'På';       break; //'On';\n    case  2: msg_sa.operating_mode_ui = 'Auto';     break; //'Auto';\n    \n    default: msg_sa.operating_mode_ui = 'Ukjent (' + msg.operating_mode + ')';break;\n};\n\nmsg_sa.hvac_model = metadata.hvac_model;\nreturn  {msg: msg_sa, metadata: metadata, msgType: msgType_sa_par};\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1602,
+          "layoutY": 460
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode",
+        "name": "save",
+        "debugMode": false,
+        "configuration": {
+          "scope": "SERVER_SCOPE"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1302,
+          "layoutY": 454
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "AB Regin E283W-3/S-209464",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "// AB Regin E283W-3\n// \n// run_state:       \n// operating_mode:\n\nmsg_sa = {};\nmsgType_sa_par = \"POST_ATTRIBUTES_REQUEST\";\n\nif (msg.hasOwnProperty(\"run_state\")) switch (msg.run_state)\n{\n    case  1: msg_sa.run_state_ui =  'Av';                                  break; // 'Off';      \n    case  2: msg_sa.run_state_ui =  'Redusert hastighet';                  break; // 'reduced speed';\n    case  3: msg_sa.run_state_ui =  'Normal hastighet';                    break; // 'normal speed';              \n    case  4: msg_sa.run_state_ui =  'Stoppet pga. alarm';                  break; // 'Stop because of alarm';          \n                 \n    default: msg_sa.run_state_ui =  'Ukjent (' + msg.run_state + ')';       break;\n};\n\nif (msg.hasOwnProperty(\"operating_mode\")) switch (msg.operating_mode)\n{\n    case  1: msg_sa.operating_mode_ui = 'Av';                                    break; //'Off';\n    case  2: msg_sa.operating_mode_ui = 'Manuell på, redusert hastighet';        break; //'Manual on, reduced speed';\n    case  3: msg_sa.operating_mode_ui = 'Manuell på, normal hastighet';          break; //'Manual on, normal speed';\n    case  4: msg_sa.operating_mode_ui = 'Auto';                                  break; //'Auto';\n    default: msg_sa.operating_mode_ui = 'Ukjent (' + msg.operating_mode + ')';break;\n};\n\nmsg_sa.hvac_model = metadata.hvac_model;\nreturn  {msg: msg_sa, metadata: metadata, msgType: msgType_sa_par};\n"
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 1,
+        "toIndex": 0,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 10,
+        "type": "advantech_wise_4012e"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 4,
+        "type": "siemens_building_technologies"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 8,
+        "type": "swegon_gold_cd"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 1,
+        "type": "swegon_gold_e"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 12,
+        "type": "ab_regin_e283w_3"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 12,
+        "type": "ab_regin_s_209464"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 6,
+        "type": "True"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 5,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 6,
+        "toIndex": 2,
+        "type": "True"
+      },
+      {
+        "fromIndex": 8,
+        "toIndex": 7,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 10,
+        "toIndex": 9,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 12,
+        "toIndex": 11,
+        "type": "Success"
+      }
+    ],
+    "ruleChainConnections": null
+  }
+}

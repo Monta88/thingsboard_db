@@ -1,0 +1,158 @@
+{
+  "ruleChain": {
+    "additionalInfo": {
+      "description": "Rules for customer Gumpen Gruppen"
+    },
+    "name": "Chris_root",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null
+  },
+  "metadata": {
+    "firstNodeIndex": 2,
+    "nodes": [
+      {
+        "additionalInfo": {
+          "layoutX": 861,
+          "layoutY": 387
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "hvac_model",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "if (metadata.hasOwnProperty(\"deviceName\"))\n{\n    switch (metadata.deviceName)\n    {\n        case \"iot2005_hvac_controller_1\": metadata.hvac_model = \"swegon_gold_e\"; break;\n        case \"iot2005_hvac_controller_2\": metadata.hvac_model = \"swegon_gold_e\"; break;\n        case \"iot2005_hvac_controller_3\": metadata.hvac_model = \"swegon_gold_e\"; break;\n        case \"iot2004_hvac_controller_1\": metadata.hvac_model = \"swegon_gold_e\"; break;\n\n    }\n}\n\nreturn {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 546,
+          "layoutY": 388
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbCheckMessageNode",
+        "name": "run_state or operating_mode",
+        "debugMode": false,
+        "configuration": {
+          "messageNames": [
+            "run_state",
+            "operating_mode"
+          ],
+          "metadataNames": [],
+          "checkAllKeys": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 369,
+          "layoutY": 152
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbMsgTypeSwitchNode",
+        "name": "Message Type check",
+        "debugMode": false,
+        "configuration": {
+          "version": 0
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1168,
+          "layoutY": 488
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "save in db",
+        "debugMode": false,
+        "configuration": {
+          "defaultTTL": 0
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 879,
+          "layoutY": 491
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "convert data",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "// Convert message and store it as calc to POST_TIMESERIES_REQUEST\n\nvar msg_ts = {};\n\nif (msg.hasOwnProperty(\"air_temperature_extract_setpoint\"))\n    msg_ts.air_temperature_extract_setpoint_telemetry = msg.air_temperature_extract_setpoint;\n\nif (msg.hasOwnProperty(\"air_temperature_supply_setpoint\"))  \n    msg_ts.air_temperature_supply_setpoint_telemetry  = msg.air_temperature_supply_setpoint;\n\nvar msgType_ts_ptr = \"POST_TELEMETRY_REQUEST\";\nreturn {msg: msg_ts, metadata: metadata, msgType: msgType_ts_ptr};\n\n\n\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 543,
+          "layoutY": 486
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbCheckMessageNode",
+        "name": "check filed",
+        "debugMode": false,
+        "configuration": {
+          "messageNames": [
+            "air_temperature_extract_setpoint"
+          ],
+          "metadataNames": [],
+          "checkAllKeys": true
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 1,
+        "toIndex": 0,
+        "type": "True"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 5,
+        "type": "Post attributes"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 1,
+        "type": "Post attributes"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 1,
+        "type": "Post telemetry"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 3,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 5,
+        "toIndex": 4,
+        "type": "True"
+      }
+    ],
+    "ruleChainConnections": [
+      {
+        "fromIndex": 0,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "d3ce74b0-6a8c-11ea-947e-e79c2b4e0867"
+        },
+        "additionalInfo": {
+          "layoutX": 1205,
+          "layoutY": 384,
+          "ruleChainNodeId": "rule-chain-node-9"
+        },
+        "type": "Success"
+      },
+      {
+        "fromIndex": 2,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "4fbcc5e0-6cea-11ea-947e-e79c2b4e0867"
+        },
+        "additionalInfo": {
+          "layoutX": 850,
+          "layoutY": 72,
+          "ruleChainNodeId": "rule-chain-node-8"
+        },
+        "type": "Post telemetry"
+      }
+    ]
+  }
+}

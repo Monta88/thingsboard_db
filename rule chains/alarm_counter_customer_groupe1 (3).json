@@ -1,0 +1,264 @@
+{
+  "ruleChain": {
+    "additionalInfo": null,
+    "name": "alarm_counter_customer_groupe1",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null
+  },
+  "metadata": {
+    "firstNodeIndex": null,
+    "nodes": [
+      {
+        "additionalInfo": {
+          "layoutX": 87,
+          "layoutY": 642
+        },
+        "type": "org.thingsboard.rule.engine.analytics.latest.alarm.TbAlarmsCountNode",
+        "name": "Alarms counting for district C",
+        "debugMode": false,
+        "configuration": {
+          "parentEntitiesQuery": {
+            "type": "relationsQuery",
+            "rootEntityId": {
+              "entityType": "ASSET",
+              "id": "79edacf0-0b9a-11ea-822b-294ca0e2791a"
+            },
+            "relationsQuery": {
+              "direction": "FROM",
+              "maxLevel": 6,
+              "filters": [
+                {
+                  "relationType": "Contains",
+                  "entityTypes": [
+                    "ASSET",
+                    "DEVICE"
+                  ]
+                }
+              ]
+            },
+            "childRelationsQuery": {
+              "direction": "FROM",
+              "maxLevel": 5,
+              "filters": [
+                {
+                  "relationType": "Contains",
+                  "entityTypes": [
+                    "DEVICE",
+                    "ASSET"
+                  ]
+                }
+              ]
+            }
+          },
+          "periodTimeUnit": "MINUTES",
+          "periodValue": 1,
+          "countAlarmsForChildEntities": true,
+          "alarmsCountMappings": [
+            {
+              "target": "alarmsCount",
+              "typesList": [],
+              "severityList": [],
+              "statusList": [
+                "ACTIVE_ACK",
+                "ACTIVE_UNACK",
+                "CLEARED_UNACK"
+              ],
+              "latestInterval": 10368000000
+            }
+          ]
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 83,
+          "layoutY": 580
+        },
+        "type": "org.thingsboard.rule.engine.analytics.latest.alarm.TbAlarmsCountNode",
+        "name": "Alarms counting for district B",
+        "debugMode": false,
+        "configuration": {
+          "parentEntitiesQuery": {
+            "type": "relationsQuery",
+            "rootEntityId": {
+              "entityType": "ASSET",
+              "id": "212c70c0-0612-11ea-822b-294ca0e2791a"
+            },
+            "relationsQuery": {
+              "direction": "FROM",
+              "maxLevel": 6,
+              "filters": [
+                {
+                  "relationType": "Contains",
+                  "entityTypes": [
+                    "ASSET",
+                    "DEVICE"
+                  ]
+                }
+              ]
+            },
+            "childRelationsQuery": {
+              "direction": "FROM",
+              "maxLevel": 5,
+              "filters": [
+                {
+                  "relationType": "Contains",
+                  "entityTypes": [
+                    "DEVICE",
+                    "ASSET"
+                  ]
+                }
+              ]
+            }
+          },
+          "periodTimeUnit": "MINUTES",
+          "periodValue": 1,
+          "countAlarmsForChildEntities": true,
+          "alarmsCountMappings": [
+            {
+              "target": "alarmsCount",
+              "typesList": [],
+              "severityList": [],
+              "statusList": [
+                "ACTIVE_ACK",
+                "ACTIVE_UNACK",
+                "CLEARED_UNACK"
+              ],
+              "latestInterval": 10368000000
+            }
+          ]
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 455,
+          "layoutY": 549
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "save in db",
+        "debugMode": false,
+        "configuration": {
+          "defaultTTL": 0
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 89,
+          "layoutY": 434
+        },
+        "type": "org.thingsboard.rule.engine.analytics.latest.alarm.TbAlarmsCountNode",
+        "name": "Alarms counting for customer group",
+        "debugMode": false,
+        "configuration": {
+          "parentEntitiesQuery": {
+            "type": "group",
+            "entityGroupId": {
+              "entityType": "ENTITY_GROUP",
+              "id": "61c69d10-014c-11ea-822b-294ca0e2791a"
+            }
+          },
+          "periodTimeUnit": "MINUTES",
+          "periodValue": 1,
+          "countAlarmsForChildEntities": true,
+          "alarmsCountMappings": [
+            {
+              "target": "alarmsCount",
+              "typesList": [],
+              "severityList": [],
+              "statusList": [
+                "ACTIVE_ACK",
+                "ACTIVE_UNACK",
+                "CLEARED_UNACK"
+              ],
+              "latestInterval": 10368000000
+            }
+          ]
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 86,
+          "layoutY": 509
+        },
+        "type": "org.thingsboard.rule.engine.analytics.latest.alarm.TbAlarmsCountNode",
+        "name": "Alarms counting for district A",
+        "debugMode": false,
+        "configuration": {
+          "parentEntitiesQuery": {
+            "type": "relationsQuery",
+            "rootEntityId": {
+              "entityType": "ASSET",
+              "id": "39efd180-ca60-11e9-adb0-999291330ae2"
+            },
+            "relationsQuery": {
+              "direction": "FROM",
+              "maxLevel": 6,
+              "filters": [
+                {
+                  "relationType": "Contains",
+                  "entityTypes": [
+                    "ASSET",
+                    "DEVICE"
+                  ]
+                }
+              ]
+            },
+            "childRelationsQuery": {
+              "direction": "FROM",
+              "maxLevel": 5,
+              "filters": [
+                {
+                  "relationType": "Contains",
+                  "entityTypes": [
+                    "DEVICE",
+                    "ASSET"
+                  ]
+                }
+              ]
+            }
+          },
+          "periodTimeUnit": "MINUTES",
+          "periodValue": 1,
+          "countAlarmsForChildEntities": true,
+          "alarmsCountMappings": [
+            {
+              "target": "alarmsCount",
+              "typesList": [],
+              "severityList": [],
+              "statusList": [
+                "ACTIVE_ACK",
+                "ACTIVE_UNACK",
+                "CLEARED_UNACK"
+              ],
+              "latestInterval": 10368000000
+            }
+          ]
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 0,
+        "toIndex": 2,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 1,
+        "toIndex": 2,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 2,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 2,
+        "type": "Success"
+      }
+    ],
+    "ruleChainConnections": null
+  }
+}

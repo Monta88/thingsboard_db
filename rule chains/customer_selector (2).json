@@ -1,0 +1,282 @@
+{
+  "ruleChain": {
+    "additionalInfo": {
+      "description": "Filters and transports messages to correct customer rules"
+    },
+    "name": "customer_selector",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null
+  },
+  "metadata": {
+    "firstNodeIndex": 4,
+    "nodes": [
+      {
+        "additionalInfo": {
+          "layoutX": 1108,
+          "layoutY": 482
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Enabler = false",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "return true;"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 777,
+          "layoutY": 483
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "customer_tag_Christian",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "metadata.customer = 'ChristianSholm'\nreturn {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1094,
+          "layoutY": 389
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Enabler = true",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "return true;"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 769,
+          "layoutY": 382
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "customer_tag_Norges",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "metadata.customer = 'Norges'\nreturn {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 429,
+          "layoutY": 306
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsSwitchNode",
+        "name": "Customer selector",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "//temporary solution till we make a generic solution based on the customer name or sth else\nif((metadata.deviceName).match('1911') || (metadata.deviceName).match('1815')) \n{\n    return ['Gumpen'];\n}\nelse if((metadata.deviceName).match('1920') )\n{\n    return ['Norges'];\n}\nelse if((metadata.deviceName).match('1907') )\n{\n    return ['Jarl'];\n}\nelse if((metadata.deviceName).match('2004')||(metadata.deviceName).match('2005'))\n{\n   return ['Chris'];\n} \n\nelse \n{\n   return ['Error'];\n    \n}\n\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1118,
+          "layoutY": 271
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Enabler = true",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "return true;"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 763,
+          "layoutY": 279
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "customer_tag_JARL",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "metadata.customer = 'Jarl'\nreturn {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1121,
+          "layoutY": 143
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Enabler = true",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "return true; "
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 443,
+          "layoutY": 167
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsSwitchNode",
+        "name": "Customer selector",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "//temporary solution till we make a generic solution based on the customer name or sth else\nif((metadata.deviceName).search('1907') === -1) \n{\n    return ['Gumpen'];\n}\nelse {\n    return ['Jarl'];\n    \n}\n\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 766,
+          "layoutY": 151
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "customer_tag_Gumpen",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "//if (metadata !== undefined) metadata.customer = 'Gumpen Gruppen';\nreturn {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 432,
+          "layoutY": 402
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsSwitchNode",
+        "name": "Customer selector",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "//temporary solution till we make a generic solution based on the customer name or sth else\nreturn metadata.deviceName;\n\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 782,
+          "layoutY": 584
+        },
+        "type": "org.thingsboard.rule.engine.action.TbLogNode",
+        "name": "Log",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "return 'Incoming message:\\n' + JSON.stringify(msg) + '\\nIncoming metadata:\\n' + JSON.stringify(metadata);"
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 1,
+        "toIndex": 0,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 1,
+        "toIndex": 0,
+        "type": "Failure"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 2,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 2,
+        "type": "Failure"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 11,
+        "type": "Error"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 1,
+        "type": "Chris"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 3,
+        "type": "Norges"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 9,
+        "type": "Gumpen"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 6,
+        "type": "Jarl"
+      },
+      {
+        "fromIndex": 6,
+        "toIndex": 5,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 6,
+        "toIndex": 5,
+        "type": "Failure"
+      },
+      {
+        "fromIndex": 9,
+        "toIndex": 7,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 9,
+        "toIndex": 7,
+        "type": "Failure"
+      }
+    ],
+    "ruleChainConnections": [
+      {
+        "fromIndex": 0,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "6b658610-6a8d-11ea-947e-e79c2b4e0867"
+        },
+        "additionalInfo": {
+          "layoutX": 1393,
+          "layoutY": 483,
+          "ruleChainNodeId": "rule-chain-node-17"
+        },
+        "type": "True"
+      },
+      {
+        "fromIndex": 2,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "6c68b6a0-0c45-11ea-822b-294ca0e2791a"
+        },
+        "additionalInfo": {
+          "layoutX": 1390,
+          "layoutY": 387,
+          "ruleChainNodeId": "rule-chain-node-16"
+        },
+        "type": "True"
+      },
+      {
+        "fromIndex": 5,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "f74ebdb0-0604-11ea-822b-294ca0e2791a"
+        },
+        "additionalInfo": {
+          "layoutX": 1371,
+          "layoutY": 271,
+          "ruleChainNodeId": "rule-chain-node-15"
+        },
+        "type": "True"
+      },
+      {
+        "fromIndex": 7,
+        "targetRuleChainId": {
+          "entityType": "RULE_CHAIN",
+          "id": "04bcad00-fafb-11e9-8139-0930b3399b01"
+        },
+        "additionalInfo": {
+          "layoutX": 1385,
+          "layoutY": 143,
+          "ruleChainNodeId": "rule-chain-node-14"
+        },
+        "type": "True"
+      }
+    ]
+  }
+}

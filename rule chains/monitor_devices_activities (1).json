@@ -1,0 +1,305 @@
+{
+  "ruleChain": {
+    "additionalInfo": null,
+    "name": "Monitor_devices_activities",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null
+  },
+  "metadata": {
+    "firstNodeIndex": 5,
+    "nodes": [
+      {
+        "additionalInfo": {
+          "layoutX": 1213,
+          "layoutY": 415
+        },
+        "type": "org.thingsboard.rule.engine.delay.TbMsgDelayNode",
+        "name": "timer",
+        "debugMode": false,
+        "configuration": {
+          "periodInSeconds": 60,
+          "maxPendingMsgs": 10000,
+          "periodInSecondsPattern": null,
+          "useMetadataPeriodInSecondsPatterns": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1050,
+          "layoutY": 297
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Filter controller",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "if((metadata.deviceName) == ('iot1911')\n||(metadata.deviceName) == ('iot2004')||\n(metadata.deviceName) == ('iot2005') ||\n(metadata.deviceName) == ('iot1920') ||\n(metadata.deviceName) == ('iot1907') ||\n(metadata.deviceName) == ('iot1815') ||\n(metadata.deviceName) == ('iot1988')||\n(metadata.deviceName) == ('iot1989'))\n{\n    return true;\n}\nelse\n\n\nreturn false;"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 58,
+          "layoutY": 216
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Documentation",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "/*\nThe purpose of this rule chain is to monitor the activity/inactivity of all the incoming devices, and trigger an alarm if any devices stay offline over than the defined value in the server attribute \"inactivityTimeout\"\nPs: the default value we set is 5 mn(300000 ms)\n\n*/"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 803,
+          "layoutY": 37
+        },
+        "type": "org.thingsboard.rule.engine.action.TbCreateAlarmNode",
+        "name": "Create Alarm",
+        "debugMode": false,
+        "configuration": {
+          "alarmType": "Device Offline",
+          "alarmDetailsBuildJs": "var details = {};\nif (metadata.prevAlarmDetails) {\n    details = JSON.parse(metadata.prevAlarmDetails);\n}\nreturn details;",
+          "severity": "WARNING",
+          "propagate": true,
+          "useMessageAlarmData": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 749,
+          "layoutY": 228
+        },
+        "type": "org.thingsboard.rule.engine.action.TbClearAlarmNode",
+        "name": "Clear alarm",
+        "debugMode": false,
+        "configuration": {
+          "alarmType": "Device Offline",
+          "alarmDetailsBuildJs": "var details = {};\nif (metadata.prevAlarmDetails) {\n    details = JSON.parse(metadata.prevAlarmDetails);\n}\nreturn details;"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 354,
+          "layoutY": 289
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "check device name",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "if((metadata.deviceName).match('2004')||(metadata.deviceName).match('2005') )\n{\n    return false;\n}\nelse\n\n\nreturn true;"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1794,
+          "layoutY": 160
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetAttributesNode",
+        "name": "Get device address",
+        "debugMode": false,
+        "configuration": {
+          "clientAttributeNames": [],
+          "sharedAttributeNames": [],
+          "serverAttributeNames": [
+            "address",
+            "Navn",
+            "building_name"
+          ],
+          "latestTsKeyNames": [],
+          "tellFailureIfAbsent": true
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1494,
+          "layoutY": 156
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetTenantAttributeNode",
+        "name": "Get tenant email",
+        "debugMode": false,
+        "configuration": {
+          "attrMapping": {
+            "email1": "TenantEmail"
+          },
+          "telemetry": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1160,
+          "layoutY": 155
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Convert a timestamp to a date",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": " \n var value= Math.floor(new Date().getTime()/1000.0);\n//return timeConverter(value)\n\nfunction timeConverter(t){\n  var a = new Date(t * 1000);\n  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];\n  var year = a.getFullYear();\n  var month = months[a.getMonth()];\n  var date = a.getDate();\n  var hour = a.getHours()+2;\n  var min = a.getMinutes();\n  var sec = a.getSeconds();\n  var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;\n  return time;\n}\n\n//metadata.date= timeConverter(metadata.createdTime)\nmetadata.date= timeConverter(value)\n\n\n//metadata.date=Math.floor(new Date().getTime()/1000.0);\n\n/*\nvar myDate = new Date(metadata.createdTime *1000);\nmetadata.date=myDate.toGMTString()+\"<br>\"+myDate.toLocaleString();\n*/\n\n/*\nts = new Date(Number(metadata.createdTime)+3600000)\n//ts = new Date(1581683330862)\nmetadata.date = ts.toTimeString()\n*/\nreturn {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1615,
+          "layoutY": 388
+        },
+        "type": "org.thingsboard.rule.engine.mail.TbMsgToEmailNode",
+        "name": "Notification - Email",
+        "debugMode": false,
+        "configuration": {
+          "fromTemplate": "no-reply@iots.no",
+          "toTemplate": "${TenantEmail}",
+          "ccTemplate": "mj@iotsolutions.no",
+          "bccTemplate": null,
+          "subjectTemplate": "${ss_building_name}: ${severity} - Alarm",
+          "bodyTemplate": "Hi,\n\nAn ${severity} alarm trigged by ${ss_Navn}.\n\nDetails: \nDate: ${date}\nBuilding: ${ss_building_name}\nAddress: ${ss_address}\nDevice: ${deviceName}\nLogin: https://oneco.iots.no\n\nRegards,\nIOT Solutions - Building Automation"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1892,
+          "layoutY": 467
+        },
+        "type": "org.thingsboard.rule.engine.mail.TbSendEmailNode",
+        "name": "Send Email SMTP",
+        "debugMode": false,
+        "configuration": {
+          "useSystemSmtpSettings": true,
+          "smtpHost": "smtp.office365.com",
+          "smtpPort": 587,
+          "username": "mj@iotsolutions.no",
+          "password": "Monta_2019_iot",
+          "smtpProtocol": "smtp",
+          "timeout": 10000,
+          "enableTls": true
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 794,
+          "layoutY": 155
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "add value to metdata",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "\nmetadata.severity= msg.severity;\nmetadata.createdTime= msg.createdTime;\nmetadata.building_name= msg.building_name;\nreturn {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1546,
+          "layoutY": 509
+        },
+        "type": "org.thingsboard.rule.engine.mail.TbMsgToEmailNode",
+        "name": "Notification - Email",
+        "debugMode": false,
+        "configuration": {
+          "fromTemplate": "no-reply@iots.no",
+          "toTemplate": "mj@iotsolutions.no",
+          "ccTemplate": "",
+          "bccTemplate": null,
+          "subjectTemplate": "${severity} - Alarm",
+          "bodyTemplate": "Hi,\n\nAn ${severity} alarm trigged by ${ss_Navn}.\n\nDetails: \nDate: ${date}\nBuilding: ${ss_building_name}\nAddress: ${ss_address}\nDevice: ${deviceName}\n\nRegards,\nIOT Solutions - Building Automation"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 402,
+          "layoutY": 148
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbMsgTypeSwitchNode",
+        "name": "message type switch",
+        "debugMode": false,
+        "configuration": {
+          "version": 0
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1496,
+          "layoutY": 91
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetCustomerAttributeNode",
+        "name": "Get Customer email",
+        "debugMode": false,
+        "configuration": {
+          "attrMapping": {
+            "email1": "CustomerEmail1",
+            "email2": "CustomerEmail2",
+            "email3": "CustomerEmail3",
+            "email4": "CustomerEmail4"
+          },
+          "telemetry": false
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 0,
+        "toIndex": 7,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 1,
+        "toIndex": 7,
+        "type": "True"
+      },
+      {
+        "fromIndex": 1,
+        "toIndex": 0,
+        "type": "False"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 11,
+        "type": "Created"
+      },
+      {
+        "fromIndex": 5,
+        "toIndex": 13,
+        "type": "True"
+      },
+      {
+        "fromIndex": 6,
+        "toIndex": 9,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 7,
+        "toIndex": 6,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 8,
+        "toIndex": 7,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 9,
+        "toIndex": 10,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 11,
+        "toIndex": 8,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 12,
+        "toIndex": 10,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 13,
+        "toIndex": 4,
+        "type": "Activity Event"
+      },
+      {
+        "fromIndex": 13,
+        "toIndex": 3,
+        "type": "Inactivity Event"
+      }
+    ],
+    "ruleChainConnections": null
+  }
+}

@@ -1,0 +1,316 @@
+{
+  "ruleChain": {
+    "additionalInfo": {
+      "description": "Create/Clear Alarm & send Email"
+    },
+    "name": "jarl_alarm_handler",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null
+  },
+  "metadata": {
+    "firstNodeIndex": 8,
+    "nodes": [
+      {
+        "additionalInfo": {
+          "layoutX": 582,
+          "layoutY": 26
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Add date to metadata",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": " \n var value= Math.floor(new Date().getTime()/1000.0);\n//return timeConverter(value)\n\nfunction timeConverter(t){\n  var a = new Date(t * 1000);\n  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];\n  var year = a.getFullYear();\n  var month = months[a.getMonth()];\n  var date = a.getDate();\n  var hour = a.getHours()+2;\n  var min = a.getMinutes();\n  var sec = a.getSeconds();\n  var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;\n  return time;\n}\n\n//metadata.date= timeConverter(metadata.createdTime)\nmetadata.date= timeConverter(value)\n\n\n//metadata.date=Math.floor(new Date().getTime()/1000.0);\n\n/*\nvar myDate = new Date(metadata.createdTime *1000);\nmetadata.date=myDate.toGMTString()+\"<br>\"+myDate.toLocaleString();\n*/\n\n/*\nts = new Date(Number(metadata.createdTime)+3600000)\n//ts = new Date(1581683330862)\nmetadata.date = ts.toTimeString()\n*/\nreturn {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1478,
+          "layoutY": 309
+        },
+        "type": "org.thingsboard.rule.engine.mail.TbMsgToEmailNode",
+        "name": "Notification - Email - Tenant",
+        "debugMode": false,
+        "configuration": {
+          "fromTemplate": "no-reply@iots.no",
+          "toTemplate": "${TenantEmail}",
+          "ccTemplate": "",
+          "bccTemplate": null,
+          "subjectTemplate": "Device alarm: ${deviceType}",
+          "bodyTemplate": "Hi,\n\nAn alarm was created by ${deviceName}.\nAddress: ${ss_address}\n\nRegards,\nIOT Solutions - Building Automation"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 387,
+          "layoutY": 146
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "add value to metdata",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "metadata.severity= msg.severity;\nmetadata.createdTime= msg.createdTime;\nmetadata.building_name= msg.building_name;\nreturn {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1451,
+          "layoutY": 41
+        },
+        "type": "org.thingsboard.rule.engine.mail.TbMsgToEmailNode",
+        "name": "Notification - Email - Customer",
+        "debugMode": false,
+        "configuration": {
+          "fromTemplate": "no-reply@iots.no",
+          "toTemplate": "${CustomerEmail1}",
+          "ccTemplate": "${CustomerEmail2},${CustomerEmail3},${CustomerEmail4}",
+          "bccTemplate": null,
+          "subjectTemplate": "Device alarm: ${deviceType}",
+          "bodyTemplate": "Hi,\n\nAn alarm was created by ${deviceName}.\nAddress: ${ss_address}\n\nRegards,\nIOT Solutions - Building Automation"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 313,
+          "layoutY": 848
+        },
+        "type": "org.thingsboard.rule.engine.pe.twilio.TbTwilioSmsNode",
+        "name": "TEST",
+        "debugMode": false,
+        "configuration": {
+          "numbersTo": "+4748610479",
+          "numberFrom": "+17857418207",
+          "accountSid": "ACef581abacbc319284e0c7d8f104afeda",
+          "accountToken": "b8ddc975d1391ce90d094c6b08932961"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 471,
+          "layoutY": 448
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Documentation",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "/*\nstep1:We are filtring all the devices who have an attribute with a key name \"alarm\"\nstep2:check if the alarm= 1 => create an alarm\nelse clear the alarm\nStep3: send a notification email to the specific customer responsible of that device.\n*/"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1535,
+          "layoutY": 190
+        },
+        "type": "org.thingsboard.rule.engine.mail.TbSendEmailNode",
+        "name": "Send Email SMTP",
+        "debugMode": false,
+        "configuration": {
+          "useSystemSmtpSettings": true,
+          "smtpHost": "smtp.office365.com",
+          "smtpPort": 587,
+          "username": "mj@iotsolutions.no",
+          "password": "Monta_2019_iot",
+          "smtpProtocol": "smtp",
+          "timeout": 10000,
+          "enableTls": true
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 754,
+          "layoutY": 534
+        },
+        "type": "org.thingsboard.rule.engine.action.TbClearAlarmNode",
+        "name": "Clear Alarm",
+        "debugMode": false,
+        "configuration": {
+          "alarmType": "General Alarm",
+          "alarmDetailsBuildJs": " var details = {};\nif (metadata.prevAlarmDetails) {\n    details = JSON.parse(metadata.prevAlarmDetails);\n}\ndetails.ClearedAlarm = msg.alarm;\nreturn details;\n/*\nvar details = {alarm: msg.Alarm, count: 1};\n\nif (metadata.prevAlarmDetails) {\n    var prevDetails = JSON.parse(metadata.prevAlarmDetails);\n    if(prevDetails.count) {\n        details.count = prevDetails.count + 1;\n    }\n}\n*/\n//return details;\n\n////////////////////////////////////////\n/*var details = {};\nif (metadata.prevAlarmDetails) {\n    details = JSON.parse(metadata.prevAlarmDetails);\n}\n//details.ClearedAlarm = msg.alarm;\nreturn details*/\n\n/*\nvar details = {alarm: msg.alarm, count: 0};\n\nif (metadata.prevAlarmDetails) {\n    var prevDetails = JSON.parse(metadata.prevAlarmDetails);\n    if(prevDetails.count) {\n        details.count = prevDetails.count + 1;\n    }\n}\n\nreturn details;\n\n*/"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 193,
+          "layoutY": 394
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbCheckMessageNode",
+        "name": "check filed",
+        "debugMode": false,
+        "configuration": {
+          "messageNames": [
+            "alarm"
+          ],
+          "metadataNames": [],
+          "checkAllKeys": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 711,
+          "layoutY": 301
+        },
+        "type": "org.thingsboard.rule.engine.action.TbCreateAlarmNode",
+        "name": "Create Alarm",
+        "debugMode": false,
+        "configuration": {
+          "alarmType": "General Alarm",
+          "alarmDetailsBuildJs": "var details = {};\ndetails.alarm= msg.alarm;\n\nreturn details;\n\n\n/*\n\nvar details = {};\ndetails.alarm= msg.alarm;\nif (metadata.prevAlarmDetails) {\n    var prevDEtails = JSON.parse(metadata.prevAlarmDetails);\n   // details.count = prevDEtails.count + 1;\n}else\n{\n  //  details.count = 1;\n}\nreturn details;\n*/",
+          "severity": "CRITICAL",
+          "propagate": true,
+          "useMessageAlarmData": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 488,
+          "layoutY": 393
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Under Threshold",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "return msg.alarm == 1;\n//return msg.temperature1 < -30 || msg.temperature1 > 50;"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 31,
+          "layoutY": 846
+        },
+        "type": "org.thingsboard.rule.engine.mail.TbMsgToEmailNode",
+        "name": "Temperature Email",
+        "debugMode": false,
+        "configuration": {
+          "fromTemplate": "Iot Solutions BA",
+          "toTemplate": "Customer",
+          "ccTemplate": null,
+          "bccTemplate": null,
+          "subjectTemplate": "Alarm Device: ${deviceType}",
+          "bodyTemplate": "Has a General alarm."
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 794,
+          "layoutY": 128
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetCustomerAttributeNode",
+        "name": "Get Customer email",
+        "debugMode": false,
+        "configuration": {
+          "attrMapping": {
+            "email1": "CustomerEmail1",
+            "email2": "CustomerEmail2",
+            "email3": "CustomerEmail3",
+            "email4": "CustomerEmail4"
+          },
+          "telemetry": false
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1305,
+          "layoutY": 127
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetAttributesNode",
+        "name": "Get device address",
+        "debugMode": false,
+        "configuration": {
+          "clientAttributeNames": [],
+          "sharedAttributeNames": [],
+          "serverAttributeNames": [
+            "address",
+            "Navn",
+            "building_name"
+          ],
+          "latestTsKeyNames": [],
+          "tellFailureIfAbsent": true
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 1050,
+          "layoutY": 125
+        },
+        "type": "org.thingsboard.rule.engine.metadata.TbGetTenantAttributeNode",
+        "name": "Get tenant email",
+        "debugMode": false,
+        "configuration": {
+          "attrMapping": {
+            "email1": "TenantEmail"
+          },
+          "telemetry": false
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 0,
+        "toIndex": 12,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 1,
+        "toIndex": 6,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 0,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 6,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 8,
+        "toIndex": 10,
+        "type": "True"
+      },
+      {
+        "fromIndex": 9,
+        "toIndex": 2,
+        "type": "Created"
+      },
+      {
+        "fromIndex": 10,
+        "toIndex": 9,
+        "type": "True"
+      },
+      {
+        "fromIndex": 10,
+        "toIndex": 7,
+        "type": "False"
+      },
+      {
+        "fromIndex": 11,
+        "toIndex": 4,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 12,
+        "toIndex": 14,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 13,
+        "toIndex": 3,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 13,
+        "toIndex": 1,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 14,
+        "toIndex": 13,
+        "type": "Success"
+      }
+    ],
+    "ruleChainConnections": null
+  }
+}

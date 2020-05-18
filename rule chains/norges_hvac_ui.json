@@ -1,0 +1,101 @@
+{
+  "ruleChain": {
+    "additionalInfo": null,
+    "name": "norges_hvac_ui",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null
+  },
+  "metadata": {
+    "firstNodeIndex": 3,
+    "nodes": [
+      {
+        "additionalInfo": {
+          "layoutX": 1221,
+          "layoutY": 160
+        },
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode",
+        "name": "save",
+        "debugMode": false,
+        "configuration": {
+          "scope": "SERVER_SCOPE"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 889,
+          "layoutY": 45
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "norges HVAC_UI",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "// Norgesgruppen\n//\n// Ref. Swegon BACnet, GOLD_E_BACnet_170815.pdf\n// GOLD RX/PX/CX/SD Generation E\n// run_state:       Object 592, Operation level\n// operating_mope   Object 793, Communication operation level\n\nmsg_sa = {};\nmsgType_sa_par = \"POST_ATTRIBUTES_REQUEST\";\n\nif (msg.run_state) switch (msg.run_state)\n{\n    case  1: msg_sa.run_state_ui = 'Vifte utilgjengelig';                      break; // 'Fan not available'\n    case  2: msg_sa.run_state_ui = 'Alarm stopp';                              break; // 'Alarm stop'\n    case  3: msg_sa.run_state_ui = 'Manuell total stopp (ht)';                  break; // 'Manual total stop (on hand terminal)'\n    case  4: msg_sa.run_state_ui = 'Ekstern total stopp (di)';                  break; // 'External total stop (digital input)'\n    case  5: msg_sa.run_state_ui = 'Kommunikasjon total stopp';                break; // 'Communication total stop'\n    case  6: msg_sa.run_state_ui = 'Kommunikasjon normal stopp';               break; // 'Communication normal stop'\n    case  7: msg_sa.run_state_ui = 'Kommunikasjon utvidet stopp';              break; // 'Communication extended normal stop'\n    case  8: msg_sa.run_state_ui = 'Tidskanal total stopp';                    break; // 'Time channel total stop'\n    case  9: msg_sa.run_state_ui = 'Tidskanal normal stopp';                   break; // 'Time channel normal stop'\n    case 10: msg_sa.run_state_ui = 'Tidskanal utvidet normal stopp';           break; // 'Time channel extended normal stop'\n    case 11: msg_sa.run_state_ui = 'Lav hastighet = normal stopp';             break; // 'Low speed=normal stop'\n    case 12: msg_sa.run_state_ui = 'SA vifte starter...';                      break; // 'SA Fan starting up'\n    case 13: msg_sa.run_state_ui = 'Vifteregulering stoppet';                  break; // 'Fan regulation blocked'\n    case 14: msg_sa.run_state_ui = 'ReCO2 100% resirkulasjon';                 break; // 'ReCO2 100% recirculation(1.11)'\n    case 15: msg_sa.run_state_ui = 'Morgen-boost stopp';                       break; // 'Morning boost stop(1.11)'\n    case 16: msg_sa.run_state_ui = 'Periodisk nattvarme stopp';                break; // 'Intermittent night heat stop(1.11)'\n    case 17: msg_sa.run_state_ui = 'Etterkjøler elektrisk varmer';             break; // 'After cooling electric heater'\n    case 18: msg_sa.run_state_ui = 'COOL DX utkoblingsforsinkelse';            break; // 'COOL DX switch off delay'\n    case 19: msg_sa.run_state_ui = 'Spjeldutkoblingsforsinkelse';              break; // 'Damper switch off delay'\n    case 20: msg_sa.run_state_ui = 'Manuell lav hastighet (ht)';                break; // 'Manual low speed (on hand terminal)'\n    case 21: msg_sa.run_state_ui = 'Ekstern lav hastighet (di)';                break; // 'External low speed (digital input)'\n    case 22: msg_sa.run_state_ui = 'Utvidet ekstern lav hastighet';            break; // 'Extended external low speed'\n    case 23: msg_sa.run_state_ui = 'Kommunikasjon lav hastighet';              break; // 'Communication low speed'\n    case 24: msg_sa.run_state_ui = 'Tidskanal lav hastighet';                  break; // 'Time channel low speed'\n    case 25: msg_sa.run_state_ui = 'Morgen-boost lav hastighet';               break; // 'Morning boost low speed'\n    case 26: msg_sa.run_state_ui = 'Periodisk nattvarme lav hastighet';        break; // 'Intermittent night heat low speed'\n    case 27: msg_sa.run_state_ui = 'Manuell høy hastighet (ht)';                break; // 'Manual high speed (on hand terminal)'\n    case 28: msg_sa.run_state_ui = 'Ekstern høy hastighet (di)';                break; // 'External high speed (digital input)'\n    case 29: msg_sa.run_state_ui = 'Utvidet ekstern høy hastighet';            break; // 'Extended external high speed'\n    case 30: msg_sa.run_state_ui = 'Kommunikasjon høy hastighet';              break; // 'Communication high speed'\n    case 31: msg_sa.run_state_ui = 'Tidskanal høy hastighet';                  break; // 'Time channel high speed'\n    case 32: msg_sa.run_state_ui = 'Sommer nattkjøling høy hastighet';         break; // 'Summer night cooling high speed'\n    case 33: msg_sa.run_state_ui = 'Filterkalibrering';                        break; // 'Filter calibration'\n    case 34: msg_sa.run_state_ui = 'RHX avrimingskalibrering';                 break; // 'RHX Defrost calibration '\n    case 35: msg_sa.run_state_ui = 'ReCO2 kalibrering';                        break; // 'ReCO2 calibration'\n    case 36: msg_sa.run_state_ui = 'AHU oppstart';                             break; // 'AHU start up'\n    case 37: msg_sa.run_state_ui = 'Varme nedramping';                         break; // 'Re-heat ramp down'\n    case 38: msg_sa.run_state_ui = 'HX nedramping';                            break; // 'HX ramp down'\n    case 39: msg_sa.run_state_ui = 'Luft-justering';                           break; // 'Air adjustment'\n    case 40: msg_sa.run_state_ui = 'Vifter i drift med aktiv brannalarm';      break; // 'Fans in operation with active fire alarm'\n    case 41: msg_sa.run_state_ui = 'PX omluftspjeldjustering';                 break; // 'PX bypass damper adjustment(1.12)'\n    default: msg_sa.run_state_ui = 'Ukjent (' + msg.run_state + ')';           break;\n};\n\nif (msg.operating_mode) switch (msg.operating_mode)\n{\n    case  1: msg_sa.operating_mode_ui = 'Auto';                             break; //'Auto';\n    case  2: msg_sa.operating_mode_ui = 'Total stopp';                      break; //'Total stop';\n    case  3: msg_sa.operating_mode_ui = 'Lav hastighet';                    break; //'Low speed';\n    case  4: msg_sa.operating_mode_ui = 'Høy hastighet';                    break; //'High speed';\n    case  5: msg_sa.operating_mode_ui = 'Normal stopp';                     break; //'Normal stop';\n    case  6: msg_sa.operating_mode_ui = 'Utvidet normal stopp';             break; //'Extended normal stop';\n    default: msg_sa.operating_mode_ui = 'Ukjent (' + msg.operating_mode_ui + ')';   break;\n};\n\nreturn  {msg: msg_sa, metadata: metadata, msgType: msgType_sa_par};\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 551,
+          "layoutY": 156
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsSwitchNode",
+        "name": "Device selector",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "return [metadata.deviceName];\n"
+        }
+      },
+      {
+        "additionalInfo": {
+          "layoutX": 287,
+          "layoutY": 154
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbCheckMessageNode",
+        "name": "run_state or operating_mode",
+        "debugMode": false,
+        "configuration": {
+          "messageNames": [
+            "run_state",
+            "operating_mode"
+          ],
+          "metadataNames": [],
+          "checkAllKeys": false
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 1,
+        "toIndex": 0,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 1,
+        "type": "iot1920_hvac_controller_3"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 1,
+        "type": "iot1920_hvac_controller_4"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 1,
+        "type": "iot1920_hvac_controller_1"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 1,
+        "type": "iot1920_hvac_controller_2"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 2,
+        "type": "True"
+      }
+    ],
+    "ruleChainConnections": null
+  }
+}
